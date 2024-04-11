@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sundown Studio</title>
+    <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    @font-face {
+        font-family: neu;
+        src: url(./NeueHaasDisplayMediu.ttf);
+    }
+    nav img {
+        transition: all ease 0.2s;
+        height: 9vh;
+    }
+    @font-face {
+        font-family: neu;
+        font-weight: 100;
+        src: url(./NeueHaasDisplayLight.ttf);
+    }
+    
+    @font-face {
+        font-family: neu;
+        font-weight: 200;
+        src: url(./NeueHaasDisplayRoman.ttf);
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: neu;
+    }
+    
+    html, body {
+        height: 100%;
+        width: 100%;
+    }
+    
+    #main {
+        /* background-color: #000; */
+        position: relative;
+        z-index: 10;
+    }
+    
+    #page1 {
+        min-height: 100vh;
+        width: 100%;
+        background-color: #EFEAE3;
+        position: relative;
+        padding: 0 2vw;
+    }
+    
+    nav {
+        padding: 2vw 0vw;
+        width: 100%;
+        /* background-color: red; */
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 100;
+        justify-content: space-between;
+    }
+    
+    #nav-part2 {
+        display: flex;
+        align-items: center;
+        gap: 1vw;
+    }
+    
+    #nav-part2 h4 {
+        padding: 10px 20px;
+        border: 1px solid #0000003c;
+        border-radius: 50px;
+        font-weight: 500;
+        color: #000000bb;
+        transition: all ease 0.4s;
+        position: relative;
+        font-size: 18px;
+        overflow: hidden;
+    }
+    
+    #nav-part2 h4::after {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: black;
+        left: 0;
+        bottom: -100%;
+        border-radius: 50%;
+        transition: all ease 0.4s;
+    }
+    
+    #nav-part2 h4:hover::after {
+        bottom: 0;
+        border-radius: 0;
+    }
+    
+    #nav-part2 h4 a {
+        color: #000000bb;
+        text-decoration: none;
+        position: relative;
+        z-index: 9;
+    }
+    
+    #nav-part2 h4:hover a {
+        color: #fff;
+    }
+    
+    nav h3 {
+        display: none;
+    }
+    
+    #center {
+        height: 65vh;
+        width: 100%;
+        /* background-color: orange; */
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        border-bottom: 1px solid #0000003c;
+        padding-bottom: 2.5vw;
+    }
+    
+    #left h3 {
+        width: 25vw;
+        font-size: 1.8vw;
+        line-height: 2vw;
+    }
+    
+    #center h1 {
+        font-size: 10vw;
+        text-align: right;
+        line-height: 8vw;
+    }
+    
+    #page1 video {
+        position: relative;
+        border-radius: 30px;
+        margin-top: 4vw;
+        width: 100%;
+    }
+    
+    #hero-shape {
+        position: absolute;
+        width: 46vw;
+        height: 36vw;
+        right: 0;
+        top: 65vh;
+    }
+    
+    #hero-1 {
+        background-color: #FE320A;
+        height: 100%;
+        width: 100%;
+        border-top-left-radius: 50%;
+        border-bottom-left-radius: 50%;
+        filter: blur(10px);
+        position: absolute;
+    }
+    
+    #hero-2 {
+        background: linear-gradient(#FE320A, #fe3f0a);
+    
+        height: 30vw;
+        width: 30vw;
+        border-radius: 50%;
+        position: absolute;
+        animation-name: anime2;
+        animation-duration: 5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        filter: blur(25px);
+    }
+    
+    #hero-3 {
+        background: linear-gradient(#FE320A, #fe3f0a);
+        height: 30vw;
+        position: absolute;
+        width: 30vw;
+        border-radius: 50%;
+        filter: blur(25px);
+        animation-name: anime1;
+        animation-duration: 5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+    
+    @keyframes anime1 {
+        from {
+            transform: translate(55%, -3%);
+        }
+    
+        to {
+            transform: translate(0%, 10%);
+        }
+    }
+    
+    @keyframes anime2 {
+        from {
+            transform: translate(5%, -5%);
+        }
+    
+        to {
+            transform: translate(-20%, 30%);
+        }
+    }
+    
+    #page2 {
+        min-height: 100vh;
+        width: 100%;
+        background-color: #EFEAE3;
+        padding: 8vw 0;
+        position: relative;
+    }
+    
+    #moving-text {
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    #moving-text::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .con {
+        white-space: nowrap;
+        display: inline-block;
+        animation-name: move;
+        animation-duration: 10s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+    
+    #moving-text h1 {
+        font-size: 9vw;
+        /* background-color: lightblue; */
+        display: inline-block;
+    }
+    
+    #gola {
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+        display: inline-block;
+        background-color: #FE320A;
+        margin: 1vw 2vw;
+    }
+    
+    @keyframes move {
+        from {
+            transform: translateX(0);
+        }
+    
+        to {
+            transform: translateX(-100%);
+        }
+    }
+    
+    #page2-bottom {
+        height: 80vh;
+        width: 100%;
+        /* background-color: aliceblue; */
+        padding: 4.5vw;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        z-index: 9;
+    }
+    
+    #page2-bottom h1 {
+        font-size: 4vw;
+        width: 60%;
+        line-height: 4vw;
+    }
+    
+    #bottom-part2 {
+        width: 20%;
+        /* background-color: aqua; */
+    }
+    
+    #bottom-part2 img {
+        width: 100%;
+        border-radius: 15px;
+    }
+    
+    #bottom-part2 p {
+        font-weight: 200;
+        margin-top: 2vw;
+        font-size: 1vw;
+    }
+    
+    #page2 #gooey {
+        height: 32vw;
+        width: 32vw;
+        position: absolute;
+        border-radius: 50%;
+        background: linear-gradient(to top right, #ff2d03, #ff5c0b);
+        /* background: linear-gradient(to top right,red,blue); */
+    
+    
+        top: 58%;
+        left: 25%;
+        filter: blur(20px);
+        animation-name: gooey;
+        animation-duration: 6s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: ease-in-out;
+    
+    }
+    
+    @keyframes gooey {
+        from {
+            filter: blur(20px);
+            transform: translate(10%, -10%) skew(0);
+        }
+    
+        to {
+            filter: blur(30px);
+            transform: translate(-10%, 10%) skew(-12deg);
+        }
+    }
+    
+    
+    
+    #page3 {
+        min-height: 100vh;
+        width: 100%;
+        background: transparent; /* Set background color to transparent */
+        padding: 0vw 0;
+        position: relative; /* Required for stacking elements */
+    }
+    /* CSS for background video */
+    #background-video {
+        position: absolute; /* Change position to absolute */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1; /* Set lower than the button's z-index */
+    }
+    /* Additional CSS rules */
+    #formContainer {
+        position: relative; /* Required for z-index to work */
+        z-index: 1; /* Place above background video */
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.5); /* Transparent background */
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        display: none; /* Initially hide the container */
+    }
+    #head {
+        text-align: center;
+        color: #333;
+    }
+    form {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    label,
+    input {
+        margin-bottom: 10px;
+    }
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    button {
+        width: 100%;
+        padding: 10px 20px;
+        background-color: #385539;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        position: relative; /* Change position to relative */
+        top: 0%;
+        text-align: center;
+        font-size: large;
+        height: 10vh;
+        z-index: 2; /* Set higher than the video's z-index */
+    }
+    
+    #result {
+        margin-top: 20px;
+        text-align: center;
+    }
+    /* Animation */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    .fade-in {
+        animation: fadeIn 1s ease-in-out;
+    }
+    
+    #fixed-image {
+        height: 30vw;
+        width: 24vw;
+        /* background-color: red; */
+        border-radius: 15px;
+        position: fixed;
+        z-index: 99;
+        left: 50%;
+        top: 25%;
+        display: none;
+        background-size: cover;
+        background-position: center;
+    }
+    
+
+   
+    #page5 {
+        height: 100vh;
+        width: 100%;
+        /* background-color: #EFEAE3; */
+    }
+    
+    #footer {
+        position: fixed;
+        height: 105vh;
+        width: 100%;
+        background-color: #000;
+        color: #fff;
+        z-index: 9;
+        bottom: 0;
+        display: flex;
+        /* align-items: flex-end; */
+        justify-content: flex-end;
+        flex-direction: column;
+        padding: 1vw 3vw;
+    }
+    
+    #footer h1 {
+        font-size: 15vw;
+    }
+    
+    #footer-div {
+        height: 20vh;
+        width: 100%;
+        background-color: red;
+    }
+    
+    #footer-bottom {
+        border-top: 1px solid #dadada;
+        height: 10vh;
+        width: 100%;
+    }
+    
+    #full-scr {
+        height: 100vh;
+        width: 100%;
+        background-color: #00000070;
+        position: fixed;
+        z-index: 99;
+        top: -100%;
+        transition: all ease 0.5s;
+    }
+    
+    #full-div1 {
+        height: 50%;
+        width: 100%;
+        background-color: #EFEAE3;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+    
+    @media (max-width:600px) {
+    
+        #page1 {
+            min-height: 100vh;
+            width: 100vw;
+            padding: 0 0vw;
+        }
+    
+        nav {
+            padding: 8vw 5vw;
+            background-color: #EFEAE3;
+            /* padding: 0 5vw; */
+        }
+    
+        nav img {
+            transition: all ease 0.2s;
+            height: 9vh;
+        }
+    
+        #nav-part2 {
+            display: none;
+        }
+    
+        nav h3 {
+            display: block;
+            padding: 3vw 5vw;
+            border: 1px solid #EFEAE3;
+            border-radius: 50px;
+            font-size: 0vw;
+            font-weight: 200;
+            padding-left: 10vw;
+        }
+    
+        #center {
+            height: 62vh;
+            width: 100%;
+            /* background-color: orange; */
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            border-bottom: 1px solid #0000003c;
+            padding: 7vw 5vw;
+            padding-bottom: 10vw;
+            flex-direction: column-reverse;
+            position: relative;
+            z-index: 9;
+        }
+    
+        #left h3 {
+            width: 80%;
+            font-size: 5.5vw;
+            line-height: 6vw;
+        }
+    
+        #center h1 {
+            font-size: 17vw;
+            text-align: right;
+            line-height: 15vw;
+        }
+    
+        #page1 video {
+            position: relative;
+            border-radius: 15px;
+            margin-top: 4vw;
+            height: 70vh;
+            object-fit: cover;
+            object-position: center;
+            width: 92%;
+            margin-left: 4%;
+        }
+    
+        #page2 {
+            min-height: 100vh;
+            width: 100%;
+            background-color: #EFEAE3;
+            padding: 8vw 0;
+            position: relative;
+        }
+    
+        #moving-text {
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+    
+        #moving-text::-webkit-scrollbar {
+            display: none;
+        }
+    
+        .con {
+            white-space: nowrap;
+            display: inline-block;
+            animation-name: move;
+            animation-duration: 10s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+    
+        #moving-text h1 {
+            font-size: 15vw;
+            /* background-color: lightblue; */
+            display: inline-block;
+        }
+    
+        #gola {
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+            display: inline-block;
+            background-color: #FE320A;
+            margin: 2vw 2vw;
+        }
+    
+        #page2-bottom {
+            height: 90vh;
+            width: 100%;
+            /* background-color: aliceblue; */
+            padding: 10vw 4vw;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            position: relative;
+            flex-direction: column;
+            z-index: 9;
+        }
+    
+        #page2-bottom h1 {
+            font-size: 8.2vw;
+            width: 100%;
+            line-height: 9vw;
+        }
+    
+        #bottom-part2 {
+            width: 70%;
+            /* background-color: aqua; */
+        }
+    
+        #bottom-part2 img {
+            width: 100%;
+            border-radius: 10px;
+        }
+    
+        #bottom-part2 p {
+            font-weight: 200;
+            margin-top: 2vw;
+            font-size: 3vw;
+        }
+    
+        #page2 #gooey {
+            height: 62vw;
+            width: 62vw;
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(to top right, #ff2d03, #ff5c0b);
+            /* background: linear-gradient(to top right,red,blue); */
+    
+    
+            top: 58%;
+            left: 25%;
+            filter: blur(20px);
+            animation-name: gooey;
+            animation-duration: 6s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: ease-in-out;
+    
+        }
+    
+    
+    }
+    
+    #loader{
+        height: 100%;
+        width: 100%;
+        background-color: #000;
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        transition: all ease 0.7s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #loader h1{
+        font-size: 4vw;
+        color: transparent;
+        background: linear-gradient(to right,orange,orangered);
+        -webkit-background-clip: text;
+        position: absolute;
+        opacity: 0;
+        animation-name: load;
+        animation-duration: 1s;
+        animation-delay: 1s;
+        animation-timing-function: linear;
+    }
+    #loader h1:nth-child(2){
+        animation-delay: 2s;
+    }
+    #loader h1:nth-child(3){
+        animation-delay: 3s;
+    }
+    
+    @keyframes load {
+        0%{
+            opacity: 0;
+        }
+        10%{
+            opacity: 1;
+        }
+        90%{
+            opacity: 1;
+        }
+        100%{
+            opacity: 0;
+        }
+    }
+    
+    @media (max-width:600px) {
+        #loader h1{
+            font-size: 9vw;
+          
+        }
+    }
+</style>
+<body>
+    <div id="loader">
+        <h1>WELCOME</h1>
+        <h1>TO</h1>
+        <h1>TIMULATOR</h1>
+    </div>
+    <div id="fixed-image">
+
+    </div>
+    <div id="main">
+
+        <div id="page1">
+            <nav>
+                <img src="https://images.squarespace-cdn.com/content/v1/5fce63270356d927d7eecdbd/05cc8293-1285-4f97-a7c3-c4646d735f0b/JIET+Universe+Logo.png?format=1500w"
+                    alt="">
+               <!-- <div id="nav-part2">
+                    <h4><a href="#">Work</a></h4>
+                    <h4><a href="#">Studio</a></h4>
+                    <h4><a href="#">Contact</a></h4>
+                </div> -->
+                <h3>Menu</h3>    
+            </nav>
+            <div id="center">
+                <div id="left">
+                    <h3>Sundown is a multi-disciplinary studio focused on creating unique, end-to-end experiences and
+                        environments.</h3>
+                </div>
+                <div id="right">
+                    <h1>SPACES <br>
+                        THAT <br>
+                        INSPIRE</h1>
+                </div>
+
+            </div>
+            <div id="hero-shape">
+                <div id="hero-1"></div>
+                <div id="hero-2"></div>
+                <div id="hero-3"></div>
+            </div>
+            <video autoplay loop muted src="./video.mp4"></video>
+        </div>
+        <div id="page2">
+            <div id="moving-text">
+                <div class="con">
+                    <h1>EXPERIENCES</h1>
+                    <div id="gola"></div>
+                    <h1>CONTENT</h1>
+                    <div id="gola"></div>
+                    <h1>ENVIRONMENTS</h1>
+                    <div id="gola"></div>
+                </div>
+                <div class="con">
+                    <h1>EXPERIENCES</h1>
+                    <div id="gola"></div>
+                    <h1>CONTENT</h1>
+                    <div id="gola"></div>
+                    <h1>ENVIRONMENTS</h1>
+                    <div id="gola"></div>
+                </div>
+                <div class="con">
+                    <h1>EXPERIENCES</h1>
+                    <div id="gola"></div>
+                    <h1>CONTENT</h1>
+                    <div id="gola"></div>
+                    <h1>ENVIRONMENTS</h1>
+                    <div id="gola"></div>
+                </div>
+            </div>
+            <div id="page2-bottom">
+                <h1>We are a group of design- driven, goal-focused creators,  producers, and designers who
+                    believe that the details  make all the difference.</h1>
+                <div id="bottom-part2">
+                    <img src="https://uploads-ssl.webflow.com/64d3dd9edfb41666c35b15b7/64d3dd9edfb41666c35b15d1_Holding_thumb-p-500.jpg"
+                        alt="">
+                    <p>We love to create, we love to solve, we love to collaborate, and we love to turn amazing ideas
+                        into reality. We’re here to partner with you through every step of the process and know that
+                        relationships are the most important things we build.</p>
+                </div>
+            </div>
+            <div id="gooey">
+
+            </div>
+        </div>
+        <div id="page3">
+            <video id="background-video" autoplay loop muted>
+                <source src="https://openaicomproductionae4b.blob.core.windows.net/production-twill-01/c74791d0-75d2-48e6-acae-96d13bc97c56/paper-planes.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="container fade-in" id="formContainer">
+                <h1 id="head">Customer Lifetime Value Estimator</h1>
+                <form id="inputForm" action="/predict" method="POST">
+                    <label for="avgSessionLength">Avg. Session Length:</label>
+                    <input type="number" id="avgSessionLength" name="avgSessionLength" step="0.01" required>
+        
+                    <label for="timeOnApp">Time on App:</label>
+                    <input type="number" id="timeOnApp" name="timeOnApp" step="0.01" required>
+        
+                    <label for="timeOnWebsite">Time on Website:</label>
+                    <input type="number" id="timeOnWebsite" name="timeOnWebsite" step="0.01" required>
+        
+                    <label for="lengthOfMembership">Length of Membership:</label>
+                    <input type="number" id="lengthOfMembership" name="lengthOfMembership" step="0.01" required>
+        
+                    <button type="submit">Predict</button>
+                </form>
+        
+                <div id="result">
+                    {% if prediction %}
+                    Predicted Yearly Amount Spent: ${{ prediction|round(2) }}
+                    {% endif %}
+                </div>
+            </div>
+            <button id="diveButton" onclick="toggleForm()">Dive</button>
+            
+        </div>
+        
+        <div id="page5">
+
+        </div>
+        <div id="full-scr">
+            <div id="full-div1">
+                
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footer-div">
+
+        </div>
+        <h1>PREDICTOR</h1>
+        <div id="footer-bottom">
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const scroll = new LocomotiveScroll({
+            el: document.querySelector('#main'),
+            smooth: true
+        });
+        
+        
+ 
+        
+        function swiperAnimation() {
+            var swiper = new Swiper(".mySwiper", {
+                slidesPerView: "auto",
+                centeredSlides: true,
+                spaceBetween: 100,
+            });
+        }
+        function menuAnimation() {
+        
+            var menu = document.querySelector("nav h3")
+            var full = document.querySelector("#full-scr")
+            var navimg = document.querySelector("nav img")
+            var flag = 0
+            menu.addEventListener("click", function () {
+                if (flag == 0) {
+                    full.style.top = "-500%"
+                    navimg.style.opacity = 1
+                    flag = 1
+                } else {
+                    full.style.top = "-100%"
+                    navimg.style.opacity = 1
+                    flag = 0
+                }
+            })
+        }
+        
+        function loaderAnimation() {
+            var loader = document.querySelector("#loader")
+            setTimeout(function () {
+                loader.style.top = "-100%"
+            }, 4200)
+        }
+        function toggleForm() {
+            var formContainer = document.getElementById('formContainer');
+            formContainer.style.display = 'block';
+            var diveButton = document.getElementById('diveButton');
+            diveButton.style.display = 'none';
+          }
+        swiperAnimation()
+        
+        menuAnimation()
+        loaderAnimation()
+    </script>
+</body>
+
+</html>
